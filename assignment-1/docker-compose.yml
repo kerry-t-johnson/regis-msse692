@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+
+  web:
+    image: php:8.0-apache
+    hostname: msse692
+    ports:
+      - "80:80"
+    networks:
+      - backend
+
+  db:
+    image: mysql/mysql-server:8.0.22
+    networks:
+      - backend
+    volumes:
+      - db-data:/var/lib/mysql
+
+networks:
+  backend:
+
+volumes:
+  db-data:
+

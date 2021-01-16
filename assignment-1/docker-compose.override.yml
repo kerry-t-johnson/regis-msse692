@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+
+  web:
+    volumes:
+      - ./html:/var/www/html
+      - ./apache-conf/apache2.conf:/etc/apache2/apache2.conf
+      - ./apache-conf/000-default.conf:/etc/apache2/sites-available/000-default.conf
+
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: P@55w0rd
+      MYSQL_DATABASE: msse692
+      MYSQL_USER: msse692
+      MYSQL_PASSWORD: P@55w0rd
+
+  pma:
+    image: phpmyadmin:5.0.4-apache
+    command: /bin/bash -c "usermod --append --groups sudo www-data && exec /docker-entrypoint.sh apache2-foreground"
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - 8080:80
+    environment:
+      MYSQL_ROOT_PASSWORD: P@55w0rd
+      PMA_SOCKET: /var/lib/mysql/mysql.sock
+    networks:
+      - backend
