@@ -1,8 +1,10 @@
-version: "3.9"
+version: "3.3"
 services:
 
   web:
-    image: php:8.0-apache
+    image: php:8.0-apache-mysql
+    volumes:
+      - ./php-conf/php.ini-production:/usr/local/etc/php/php.ini
     hostname: msse692
     ports:
       - "80:80"

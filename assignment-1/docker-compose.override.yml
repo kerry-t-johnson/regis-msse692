@@ -1,9 +1,10 @@
-version: "3.9"
+version: "3.3"
 services:
 
   web:
     volumes:
       - ./html:/var/www/html
+      - ./php-conf/php.ini-development:/usr/local/etc/php/php.ini
       - ./apache-conf/apache2.conf:/etc/apache2/apache2.conf
       - ./apache-conf/000-default.conf:/etc/apache2/sites-available/000-default.conf
 
