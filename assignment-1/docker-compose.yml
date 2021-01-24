@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+
+  web:
+    image: php:8.0-apache-mysql
+    volumes:
+      - ./php-conf/php.ini-production:/usr/local/etc/php/php.ini
+    hostname: msse692
+    ports:
+      - "80:80"
+    networks:
+      - backend
+
+  db:
+    image: mysql/mysql-server:8.0.22
+    networks:
+      - backend
+    volumes:
+      - db-data:/var/lib/mysql
+
+networks:
+  backend:
+
+volumes:
+  db-data:
+
