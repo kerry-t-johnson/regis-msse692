@@ -107,15 +107,4 @@ docker build <==> podman build (no engine, executed by the user!)
 
 
 # Show and Tell
-
-### Run the ubuntu image (demonstrate that same kernel is used)
-```bash
-wsl$ uname -r        # Shows microsoft kernel
-wsl$ docker run --rm -it ubuntu:20.04 bash
-root@xyz: uname -r   # Shows microsoft kernel
-```
-
-### Demonstrate immutability
-root@xyz: touch /var/tmp/foo 
-
-
+...
